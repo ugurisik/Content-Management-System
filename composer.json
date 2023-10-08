@@ -1,0 +1,15 @@
+{
+    "require": {
+        "phpmailer/phpmailer": "^6.8",
+        "thingengineer/mysqli-database-class": "dev-master",
+        "artisansweb/image-optimizer": "^0.0.5",
+        "iyzico/iyzipay-php": "^2.0",
+        "umpirsky/country-list": "^2.0",
+        "maximebf/debugbar": "^1.19"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    }
+}
