@@ -69,6 +69,8 @@
                                         <td><span class="badge badge-light-secondary fw-bold text-muted"><?= $user['User']['UpdatedDate'] ?></span></td>
                                         <td>
                                             <a href="<?= ADMIN_URL ?>langs/edit/<?= $lang['Guid'] ?>" class="btn btn-outline btn-outline-dashed p-3 m-1"> <i class="bi bi-eye-fill fs-3 text-success position-relative" style="left: 2px;"></i></a>
+                                            <a href="<?= ADMIN_URL ?>langs/edit/<?= $lang['Guid'] ?>" class="btn btn-outline btn-outline-dashed p-3 m-1"> <i class="bi bi-key-fill fs-3 text-success position-relative" style="left: 2px;"></i></a>
+                                            <a href="<?= ADMIN_URL ?>langs/edit/<?= $lang['Guid'] ?>" class="btn btn-outline btn-outline-dashed p-3 m-1"> <i class="bi bi-dpad fs-3 text-success position-relative" style="left: 2px;"></i></a>
                                             <a href="<?= ADMIN_URL ?>langs/edit/<?= $lang['Guid'] ?>" class="btn btn-outline btn-outline-dashed p-3 m-1"> <i class="bi bi-pencil-square fs-3 text-warning position-relative" style="left: 2px;"></i></a>
                                             <a href="javascript:;" onclick="del('<?= $lang['Guid'] ?>')" class="btn btn-outline btn-outline-dashed p-3 m-1"> <i class="bi bi-trash fs-3 text-danger position-relative" style="left: 2px;"></i></a>
                                         </td>
@@ -143,7 +145,7 @@
         </script>
     <?php endif; ?>
     <?php if ($params['type'] == 'add') : ?>
-        <form action="">
+        <form name="formData">
             <div class="row">
                 <div class="col-12 mb-5 mb-xl-10">
                     <div class="card card-flush h-xl-100">
@@ -199,16 +201,234 @@
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane fade active show" id="userInformation" role="tabpanel">
-                                    Tab 1
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="card-body border-top p-9">
+                                                <div class="row mb-6">
+                                                    <label class="col-lg-4 col-form-label fw-semibold fs-6">Avatar</label>
+                                                    <div class="col-lg-8">
+                                                        <div id="cover" orakuploader="on"></div>
+                                                        <div class="form-text">Allowed file types: png, jpg, jpeg.</div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-6">
+                                                    <label class="col-lg-4 col-form-label required fw-semibold fs-6">Full Name</label>
+                                                    <div class="col-lg-8">
+                                                        <div class="row">
+                                                            <div class="col-lg-6 fv-row fv-plugins-icon-container">
+                                                                <input type="text" name="fname" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" placeholder="First name" value="Uğur">
+                                                                <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+                                                            </div>
+                                                            <div class="col-lg-6 fv-row fv-plugins-icon-container">
+                                                                <input type="text" name="lname" class="form-control form-control-lg form-control-solid" placeholder="Last name" value="Işık">
+                                                                <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-6">
+                                                    <label class="col-lg-4 col-form-label fw-semibold fs-6">
+                                                        <span class="required">Contact Phone</span>
+                                                    </label>
+                                                    <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                                        <input type="tel" name="phone" class="form-control form-control-lg form-control-solid" placeholder="Phone number" value="0544 532 41 15">
+                                                        <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="tab-pane fade" id="userSettings" role="tabpanel">
-                                    Tab 2
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="card-body border-top p-9">
+                                                <div class="row mb-6">
+                                                    <label class="col-lg-4 col-form-label fw-semibold fs-6">
+                                                        <span class="required">User Name</span>
+                                                    </label>
+                                                    <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                                        <input type="text" name="username" class="form-control form-control-lg form-control-solid" placeholder="User Name" value="ugurisik">
+                                                        <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-6">
+                                                    <label class="col-lg-4 col-form-label fw-semibold fs-6">
+                                                        <span class="required">Email</span>
+                                                    </label>
+                                                    <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                                        <input type="email" name="email" class="form-control form-control-lg form-control-solid" placeholder="Email" value="peniaugur80@gmail.com">
+                                                        <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-6">
+                                                    <label class="col-lg-4 col-form-label fw-semibold fs-6">
+                                                        <span class="required">Status</span>
+                                                    </label>
+                                                    <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                                        <select name="status" class="form-select form-control form-control-solid" id="">
+                                                            <option value="0">Inactive</option>
+                                                            <option value="1">Active</option>
+                                                            <option value="2">Banned</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-6">
+                                                    <label class="col-lg-4 col-form-label fw-semibold fs-6">
+                                                        <span class="required">Active Theme</span>
+                                                    </label>
+                                                    <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                                        <select name="activetheme" class="form-select form-control form-control-solid" id="">
+                                                            <option value="admin">Default</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="tab-pane fade" id="logs" role="tabpanel">
-                                    Tab 3
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="card-body border-top p-9">
+                                                <div class="table-responsive">
+                                                    <table class="table align-middle table-row-dashed fw-semibold text-gray-600 fs-6 gy-5" id="logTable">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Action Status</th>
+                                                                <th>Action</th>
+                                                                <th>User IP</th>
+                                                                <th>User OS</th>
+                                                                <th class="text-end">Action Date</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="min-w-70px">
+                                                                    <div class="badge badge-light-success">Success</div>
+                                                                </td>
+                                                                <td> POST /v1/invoices/in_1040_6828/payment </td>
+                                                                <td> 192.168.1.1 </td>
+                                                                <td> Mac OS X </td>
+                                                                <td class="pe-0 text-end min-w-200px"> 19 Aug 2023, 8:43 pm </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="min-w-70px">
+                                                                    <div class="badge badge-light-warning">Warning</div>
+                                                                </td>
+                                                                <td>POST /v1/customer/c_6523eb1f884f5/not_found </td>
+                                                                <td> 192.168.1.1 </td>
+                                                                <td> Mac OS X </td>
+                                                                <td class="pe-0 text-end min-w-200px">25 Jul 2023, 6:05 pm </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="tab-pane fade" id="report" role="tabpanel">
-                                    Tab 4
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="card-body border-top p-9">
+                                                <div class="row p-0 mb-5 px-9">
+                                                    <div class="col">
+                                                        <div class="border border-dashed border-gray-300 text-center min-w-125px rounded pt-4 pb-2 my-3">
+                                                            <span class="fs-4 fw-semibold text-success d-block">Toplam İşlem</span>
+                                                            <span class="fs-2hx fw-bold text-gray-900 counted" data-kt-countup="true" data-kt-countup-value="2318" data-kt-initialized="1">2,318</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="border border-dashed border-gray-300 text-center min-w-125px rounded pt-4 pb-2 my-3">
+                                                            <span class="fs-4 fw-semibold text-primary d-block">Başarılı Giriş</span>
+                                                            <span class="fs-2hx fw-bold text-gray-900 counted" data-kt-countup="true" data-kt-countup-value="72" data-kt-initialized="1">72</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="border border-dashed border-gray-300 text-center min-w-125px rounded pt-4 pb-2 my-3">
+                                                            <span class="fs-4 fw-semibold text-danger d-block">Hatalı Giriş</span>
+                                                            <span class="fs-2hx fw-bold text-gray-900 counted" data-kt-countup="true" data-kt-countup-value="18" data-kt-initialized="1">18</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="bg-gray-100 bg-opacity-70 rounded-2 px-6 py-5">
+                                                            <div id="logChart" style="height: 350px;"></div>
+                                                            <div class="m-0">
+                                                                <span class="text-gray-500 fw-semibold fs-6">Aylık İşlem Grafiği [<?= date('Y') ?>]</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row border-top border-primary mt-3">
+                                                    <div class="col-md-12">
+                                                        <div class="table-responsive pt-5">
+                                                            <table class="table align-middle table-row-dashed fw-semibold text-gray-600 fs-6 gy-5" id="loginTable">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th class="text-primary">Login Date</th>
+                                                                        <th>Browser</th>
+                                                                        <th>Browser Lang</th>
+                                                                        <th>OS</th>
+                                                                        <th>IP</th>
+                                                                        <th>User Agent</th>
+                                                                        <th>Location</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td> 19 Aug 2023, 8:43 pm </td>
+                                                                        <td> Chrome </td>
+                                                                        <td> TR </td>
+                                                                        <td> Mac OS X </td>
+                                                                        <td> 192.168.1.1 </td>
+                                                                        <td> Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36 </td>
+                                                                        <td> Turkey / Adana </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row border-top border-danger mt-3">
+                                                    <div class="col-md-12">
+                                                        <div class="table-responsive pt-5">
+                                                            <table class="table align-middle table-row-dashed fw-semibold text-gray-600 fs-6 gy-5" id="loginerrorTable">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th class="text-danger">Failed Login Date</th>
+                                                                        <th>User Name</th>
+                                                                        <th>Password</th>
+                                                                        <th>Browser</th>
+                                                                        <th>Browser Lang</th>
+                                                                        <th>OS</th>
+                                                                        <th>IP</th>
+                                                                        <th>User Agent</th>
+                                                                        <th>Location</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td> 19 Aug 2023, 8:43 pm </td>
+                                                                        <td> awd </td>
+                                                                        <td> 123456789 </td>
+                                                                        <td> Chrome </td>
+                                                                        <td> TR </td>
+                                                                        <td> Mac OS X </td>
+                                                                        <td> 192.168.1.1 </td>
+                                                                        <td> Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36 </td>
+                                                                        <td> Turkey / Adana </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -218,6 +438,147 @@
                 </div>
             </div>
         </form>
+        <script>
+            function logChart() {
+                var element = document.getElementById('logChart');
+
+                var height = parseInt(KTUtil.css(element, 'height'));
+                var labelColor = KTUtil.getCssVariableValue('');
+                var borderColor = KTUtil.getCssVariableValue('');
+                var baseColor = "#2475BA";
+                var lightColor = "#57A7ED70";
+
+
+
+                var options = {
+                    series: [{
+                        name: 'Ziyaretçi Sayısı',
+                        data: [<?php foreach ($currentyeardatastr as $visitors) : ?> "<?= $visitors['visitcount'] ?>", <?php endforeach; ?>]
+                    }],
+                    chart: {
+                        fontFamily: 'inherit',
+                        type: 'area',
+                        height: height,
+                        toolbar: {
+                            show: true
+                        }
+                    },
+                    plotOptions: {
+
+                    },
+                    legend: {
+                        show: false
+                    },
+                    dataLabels: {
+                        enabled: false
+                    },
+                    fill: {
+                        type: 'solid',
+                        opacity: 1
+                    },
+                    stroke: {
+                        curve: 'smooth',
+                        show: true,
+                        width: 3,
+                        colors: [baseColor]
+                    },
+                    xaxis: {
+                        categories: [<?php foreach ($currentyeardatastr as $visitors) : ?> "<?= $visitors['month'] ?>", <?php endforeach; ?>],
+                        axisBorder: {
+                            show: false,
+                        },
+                        axisTicks: {
+                            show: false
+                        },
+                        labels: {
+                            style: {
+                                colors: labelColor,
+                                fontSize: '12px'
+                            }
+                        },
+                        crosshairs: {
+                            position: 'front',
+                            stroke: {
+                                color: baseColor,
+                                width: 1,
+                                dashArray: 3
+                            }
+                        },
+                        tooltip: {
+                            enabled: true,
+                            formatter: undefined,
+                            offsetY: 0,
+                            style: {
+                                fontSize: '12px'
+                            }
+                        }
+                    },
+                    yaxis: {
+                        labels: {
+                            style: {
+                                colors: labelColor,
+                                fontSize: '12px'
+                            }
+                        }
+                    },
+                    states: {
+                        normal: {
+                            filter: {
+                                type: 'none',
+                                value: 0
+                            }
+                        },
+                        hover: {
+                            filter: {
+                                type: 'none',
+                                value: 0
+                            }
+                        },
+                        active: {
+                            allowMultipleDataPointsSelection: false,
+                            filter: {
+                                type: 'none',
+                                value: 0
+                            }
+                        }
+                    },
+                    tooltip: {
+                        style: {
+                            fontSize: '12px'
+                        },
+                        y: {
+                            formatter: function(val) {
+                                return '' + val + ' kişi'
+                            }
+                        }
+                    },
+                    colors: [lightColor],
+                    grid: {
+                        borderColor: borderColor,
+                        strokeDashArray: 4,
+                        yaxis: {
+                            lines: {
+                                show: true
+                            }
+                        }
+                    },
+                    markers: {
+                        strokeColor: baseColor,
+                        strokeWidth: 3
+                    }
+                };
+
+                var chart = new ApexCharts(element, options);
+                chart.render();
+            }
+            document.addEventListener("DOMContentLoaded", function() {
+                orakuploader("cover", "<?= SITE_URL ?>/", "langs/logos", "<?= $params['lang']['langs_edit_choose_cover'] ?>", "image/*", 1, []);
+                $('#logTable').DataTable();
+                $('#loginTable').DataTable();
+                $('#loginerrorTable').DataTable();
+                logChart();
+            });
+        </script>
     <?php endif; ?>
     <?php if ($params['type'] == 'edit') :
         $lang = $this->model('sampleModel')->getOneData('langs', ['Guid' => $params['guid']]);
