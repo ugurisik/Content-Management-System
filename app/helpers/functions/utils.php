@@ -177,11 +177,11 @@ class utils
                         "active" => "settings"
                     ],
                     [
-                        "text" => "Yönetici Ayarları",
-                        "href" => "" . ADMIN_URL . "langs/list",
+                        "text" => "Yönetici Listesi",
+                        "href" => "" . ADMIN_URL . "admin/list",
                         "icon" => "bi bi-people-fill",
                         "target" => "",
-                        "active" => "users"
+                        "active" => "admin"
                     ]
                 ]
             ]

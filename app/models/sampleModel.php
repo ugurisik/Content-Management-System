@@ -4,20 +4,23 @@ class sampleModel extends Model
 {
     public function get($table = 'sample')
     {
+        $this->db->orderBy('ID', 'desc');
         return $this->db->get($table);
     }
-    public function getData($table = 'sample', $whereParams = [])
+    public function getData($table = 'sample', $whereParams = [], $limit = null)
     {
         foreach ($whereParams as $key => $value) {
             $this->db->where($key, $value);
         }
-        return $this->db->get($table);
+        $this->db->orderBy('ID', 'desc');
+        return $this->db->get($table, $limit);
     }
     public function getDataOrWhere($table = 'sample', $whereParams = [])
     {
         foreach ($whereParams as $key => $value) {
             $this->db->orWhere($key, $value);
         }
+        $this->db->orderBy('ID', 'desc');
         return $this->db->get($table);
     }
     public function getOneData($table = 'sample', $whereParams = [])
